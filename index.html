@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="InterCollabs is an international influencer marketing agency connecting ambitious brands with creators to build meaningful campaigns across markets.">
+<meta name="theme-color" content="#101d2b">
+<title>InterCollabs — Influence, Without Borders</title>
+<style>
+:root {
+  --site-primary: #b8ef65;
+  --site-on-primary: #142315;
+  --site-secondary: #101d2b;
+  --site-on-secondary: #f6f5ef;
+  --site-background: #f6f5ef;
+  --site-on-background: #172331;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --ink: #172331;
+  --muted: #69737a;
+  --paper: #f6f5ef;
+  --line: rgba(23,35,49,.14);
+  --lime: #b8ef65;
+  --navy: #101d2b;
+  --navy2: #172b3c;
+  --white: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; font-family: var(--site-font-body); color: var(--ink); background: var(--paper); }
+#app { width: 100%; min-height: 100vh; background-color: light-dark(var(--site-background), #111923); color: light-dark(var(--site-on-background), #f4f3ed); border-radius: 0; overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.eyebrow:before { content: ""; width: 24px; height: 1px; background: currentColor; opacity: .7; }
+.site-header { position: sticky; z-index: 20; top: 0; background: rgba(246,245,239,.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(23,35,49,.09); color: var(--ink); }
+.nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; font-size: 19px; font-weight: 850; letter-spacing: -.055em; }
+.brand-mark { width: 32px; height: 32px; border-radius: 10px; background: var(--navy); color: var(--lime); display: grid; place-items: center; font-size: 19px; font-weight: 900; transform: rotate(-5deg); }
+.nav-links { display: flex; align-items: center; gap: 31px; font-size: 13px; font-weight: 650; color: #46525c; }
+.nav-links a:hover { color: #111d29; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border: 1px solid transparent; border-radius: 999px; padding: 14px 21px; font-size: 13px; font-weight: 800; transition: transform .2s, background .2s, border-color .2s; cursor: pointer; }
+.btn:hover { transform: translateY(-2px); }
+.btn-dark { background: var(--navy); color: white; }
+.btn-dark:hover { background: #263e52; }
+.btn-lime { background: var(--lime); color: #142315; }
+.btn-lime:hover { background: #c9fa83; }
+.btn-outline { border-color: rgba(255,255,255,.35); color: white; }
+.btn-outline:hover { background: rgba(255,255,255,.1); }
+.menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); font-size: 25px; cursor: pointer; }
+.hero { background: var(--navy); color: #f6f5ef; position: relative; isolation: isolate; padding: 92px 0 88px; overflow: hidden; }
+.hero:before { content: ""; position: absolute; z-index: -1; width: 650px; height: 650px; border: 1px solid rgba(184,239,101,.18); border-radius: 50%; right: -90px; top: -260px; box-shadow: 0 0 0 65px rgba(184,239,101,.035), 0 0 0 130px rgba(184,239,101,.025); opacity: var(--site-decoration-opacity); }
+.hero:after { content: ""; position: absolute; z-index: -1; width: 270px; height: 270px; border-radius: 50%; background: rgba(184,239,101,.09); filter: blur(70px); right: 15%; bottom: -160px; opacity: var(--site-decoration-opacity); }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 65px; align-items: center; }
+.hero .eyebrow { color: var(--lime); }
+.hero h1 { font-size: clamp(48px, 6.5vw, 82px); line-height: .99; letter-spacing: -.075em; max-width: 700px; margin: 27px 0 25px; font-weight: 780; }
+.hero h1 em { color: var(--lime); font-style: normal; }
+.hero-copy { max-width: 540px; color: #bdc7cd; font-size: 16px; line-height: 1.8; }
+.hero-actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 34px; }
+.hero-note { display: flex; align-items: center; gap: 12px; margin-top: 43px; color: #aebbc3; font-size: 11px; letter-spacing: .04em; }
+.note-dot { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 0 5px rgba(184,239,101,.12); }
+.hero-art { position: relative; min-height: 440px; display: grid; place-items: center; }
+.orbit { position: absolute; width: 390px; height: 390px; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; }
+.orbit:before, .orbit:after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; inset: 35px; }
+.orbit:after { inset: 85px; }
+.orbit-center { position: relative; z-index: 2; width: 220px; height: 220px; border-radius: 50%; display: grid; place-items: center; background: var(--lime); color: var(--navy); box-shadow: 0 25px 80px rgba(0,0,0,.22); text-align: center; transform: rotate(-8deg); }
+.orbit-center strong { font-size: 42px; letter-spacing: -.08em; line-height: .9; }
+.orbit-center span { font-size: 10px; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; margin-top: -32px; }
+.float-card { position: absolute; z-index: 3; background: #203548; border: 1px solid rgba(255,255,255,.13); color: #f7f7f2; border-radius: 15px; padding: 15px 17px; box-shadow: 0 15px 40px rgba(0,0,0,.2); }
+.float-card small { display: block; color: #aab8c0; font-size: 9px; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 7px; }
+.float-card b { font-size: 14px; }
+.float-one { top: 42px; right: 0; transform: rotate(5deg); }
+.float-two { bottom: 52px; left: -3px; transform: rotate(-5deg); }
+.float-three { bottom: 8px; right: 22px; background: var(--lime); color: var(--navy); transform: rotate(4deg); }
+.float-three small { color: #536746; }
+.trust-strip { border-bottom: 1px solid var(--line); background: #eeeee7; }
+.trust-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 94px; }
+.trust-label { max-width: 180px; color: #707a7d; font-size: 10px; font-weight: 800; letter-spacing: .13em; line-height: 1.6; text-transform: uppercase; }
+.trust-item { font-size: 13px; font-weight: 800; letter-spacing: -.02em; color: #647078; }
+.trust-item span { color: var(--ink); }
+.section { padding: 112px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 35px; margin-bottom: 52px; }
+.section-head h2 { font-size: clamp(36px, 4.3vw, 57px); line-height: 1.03; letter-spacing: -.065em; max-width: 660px; margin: 17px 0 0; }
+.section-head p { max-width: 350px; color: var(--muted); font-size: 14px; line-height: 1.8; margin: 0 0 4px; }
+.eyebrow.dark { color: #52606a; }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+.service-card { background: #fff; border: 1px solid rgba(23,35,49,.08); border-radius: 18px; padding: 29px; min-height: 270px; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(22,35,49,.08); }
+.service-icon { width: 43px; height: 43px; border-radius: 13px; display: grid; place-items: center; background: #edf4e4; color: #2e4820; font-size: 20px; }
+.service-card h3 { font-size: 19px; letter-spacing: -.04em; margin: 27px 0 10px; }
+.service-card p { color: var(--muted); font-size: 13px; line-height: 1.75; margin: 0; }
+.service-number { margin-top: auto; padding-top: 23px; color: #a0a8a6; font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.process { background: #e9eee5; }
+.process-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; }
+.process-intro h2 { font-size: clamp(38px,4.5vw,58px); letter-spacing: -.07em; line-height: 1; margin: 18px 0; }
+.process-intro p { color: #68736e; line-height: 1.8; font-size: 14px; max-width: 340px; }
+.process-list { border-top: 1px solid rgba(23,35,49,.2); }
+.process-step { display: grid; grid-template-columns: 55px 1fr; gap: 18px; padding: 25px 0; border-bottom: 1px solid rgba(23,35,49,.2); }
+.step-no { font-size: 11px; font-weight: 850; color: #71806c; padding-top: 4px; }
+.process-step h3 { margin: 0 0 7px; font-size: 17px; letter-spacing: -.03em; }
+.process-step p { margin: 0; max-width: 510px; color: #68736e; font-size: 13px; line-height: 1.75; }
+.model { background: var(--navy); color: #f6f5ef; }
+.model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 75px; align-items: center; }
+.model h2 { font-size: clamp(38px,4.5vw,58px); letter-spacing: -.07em; line-height: 1.02; margin: 18px 0 20px; }
+.model-copy { color: #b7c3c9; font-size: 14px; line-height: 1.85; max-width: 480px; }
+.model .eyebrow { color: var(--lime); }
+.model-points { display: grid; gap: 15px; margin-top: 30px; }
+.model-point { display: flex; gap: 13px; align-items: flex-start; color: #e5e9e5; font-size: 13px; line-height: 1.6; }
+.check { color: var(--lime); font-size: 17px; line-height: 1; }
+.model-panel { background: #1c3042; border: 1px solid rgba(255,255,255,.13); border-radius: 22px; padding: 30px; }
+.panel-label { color: #9eafb8; text-transform: uppercase; letter-spacing: .15em; font-size: 10px; font-weight: 800; }
+.flow-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.13); }
+.flow-row:last-child { border: 0; }
+.flow-row div { display: flex; flex-direction: column; gap: 5px; }
+.flow-row b { font-size: 14px; }
+.flow-row small { color: #aab8c0; font-size: 11px; }
+.flow-arrow { color: var(--lime); font-size: 18px; }
+.flow-note { color: #9eafb8; font-size: 10px; line-height: 1.6; margin-top: 15px; }
+.audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.audience-card { border-radius: 19px; padding: 33px; min-height: 250px; }
+.audience-card.brand-card { background: var(--lime); color: #1a2a19; }
+.audience-card.creator-card { background: #e5e9e4; color: var(--ink); }
+.audience-card .eyebrow { opacity: .65; }
+.audience-card h3 { font-size: 27px; letter-spacing: -.06em; margin: 25px 0 10px; }
+.audience-card p { max-width: 430px; font-size: 13px; line-height: 1.75; opacity: .76; }
+.audience-card a { display: inline-flex; gap: 10px; font-size: 12px; font-weight: 850; margin-top: 10px; }
+.cta { padding: 95px 0; background: var(--lime); color: #172719; }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.cta h2 { max-width: 650px; font-size: clamp(38px,5vw,63px); line-height: .99; letter-spacing: -.07em; margin: 17px 0 0; }
+.cta p { color: #43543d; font-size: 14px; line-height: 1.7; max-width: 360px; }
+.cta .btn { background: var(--navy); color: white; white-space: nowrap; }
+.contact { background: #f6f5ef; }
+.contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; }
+.contact h2 { font-size: clamp(38px,4.5vw,58px); letter-spacing: -.07em; line-height: 1; margin: 18px 0; }
+.contact-intro p { color: var(--muted); line-height: 1.8; font-size: 14px; max-width: 370px; }
+.contact-detail { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); color: #6a7478; font-size: 12px; }
+.contact-detail b { display: block; color: var(--ink); margin-bottom: 7px; }
+.contact-form { background: white; border: 1px solid rgba(23,35,49,.08); border-radius: 20px; padding: 31px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { margin-bottom: 17px; }
+.field label { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 800; color: #46535b; }
+.field input, .field select, .field textarea { width: 100%; border: 1px solid #dfe3dc; border-radius: 10px; padding: 13px 14px; color: var(--ink); background: #fbfcf9; outline: none; font-size: 13px; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: #7eae4b; box-shadow: 0 0 0 3px rgba(184,239,101,.2); }
+.field textarea { resize: vertical; min-height: 110px; }
+.form-foot { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.form-status { color: #4c7040; font-size: 12px; }
+.site-footer { background: var(--navy); color: #f4f5ef; padding: 42px 0 25px; }
+.footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; padding-bottom: 38px; }
+.footer-brand p { max-width: 280px; color: #9eafb8; font-size: 12px; line-height: 1.7; }
+.footer-links { display: flex; gap: 60px; }
+.footer-col { display: flex; flex-direction: column; gap: 12px; font-size: 12px; color: #b6c1c6; }
+.footer-col b { color: #f4f5ef; font-size: 10px; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 5px; }
+.footer-col a:hover { color: var(--lime); }
+.footer-bottom { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(255,255,255,.14); padding-top: 20px; color: #899aa3; font-size: 10px; }
+@media (max-width: 850px) {
+  .nav-links { gap: 17px; }
+  .nav-cta { display: none; }
+  .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hero-art { min-height: 370px; }
+  .orbit { width: 330px; height: 330px; }
+  .section-head, .process-grid, .model-grid, .contact-grid { grid-template-columns: 1fr; display: grid; gap: 30px; }
+  .section-head { align-items: start; }
+  .process-grid, .model-grid, .contact-grid { gap: 48px; }
+}
+@media (max-width: 620px) {
+  .wrap { width: min(100% - 36px, 1180px); }
+  .nav { min-height: 68px; }
+  .menu-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--paper); padding: 20px 24px 25px; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 19px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 5px 0; }
+  .hero { padding: 70px 0 45px; }
+  .hero h1 { font-size: clamp(47px, 13vw, 67px); }
+  .hero-copy { font-size: 14px; }
+  .hero-art { min-height: 320px; transform: scale(.88); margin: -5px -20px; }
+  .orbit { width: 300px; height: 300px; }
+  .orbit-center { width: 175px; height: 175px; }
+  .orbit-center strong { font-size: 35px; }
+  .float-one { right: -5px; }
+  .float-two { left: -8px; }
+  .trust-inner { flex-wrap: wrap; justify-content: flex-start; padding: 22px 0; gap: 17px 25px; }
+  .trust-label { width: 100%; max-width: none; }
+  .trust-item { font-size: 11px; }
+  .section { padding: 77px 0; }
+  .section-head { margin-bottom: 33px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { min-height: 225px; }
+  .audience-grid { grid-template-columns: 1fr; }
+  .audience-card { min-height: 220px; }
+  .cta { padding: 72px 0; }
+  .cta-inner { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .contact-form { padding: 22px; }
+  .footer-top { flex-direction: column; }
+  .footer-links { width: 100%; justify-content: space-between; gap: 20px; }
+  .footer-bottom { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div id="app">
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="InterCollabs home"><span class="brand-mark">i</span><span>intercollabs<span style="color:#78964f">.</span></span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#services">Services</a><a href="#approach">Our approach</a><a href="#model">How it works</a><a href="#about">Who we work with</a>
+    </nav>
+    <a class="btn btn-dark nav-cta" href="#contact">Let's talk <span>↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">International influencer marketing</span>
+      <h1>Influence,<br><em>without</em><br>borders.</h1>
+      <p class="hero-copy">We bring brands and creators together to make influencer marketing work across markets. From creator partnerships to campaign delivery, we manage the details so you can focus on the bigger picture.</p>
+      <div class="hero-actions"><a class="btn btn-lime" href="#contact">Plan a campaign <span>↗</span></a><a class="btn btn-outline" href="#services">Explore our services <span>↓</span></a></div>
+      <div class="hero-note"><span class="note-dot"></span> Strategy-led. Creator-powered. International by nature.</div>
+    </div>
+    <div class="hero-art" aria-label="Illustration representing a global creator network">
+      <div class="orbit"></div><div class="orbit-center"><strong>IC.</strong><span>Ideas connect</span></div>
+      <div class="float-card float-one"><small>Our focus</small><b>Creators × Brands</b></div>
+      <div class="float-card float-two"><small>Campaign thinking</small><b>Built around your goals</b></div>
+      <div class="float-card float-three"><small>One connected partner</small><b>From brief to delivery ↗</b></div>
+    </div>
+  </div>
+</section>
+<div class="trust-strip"><div class="wrap trust-inner"><div class="trust-label">A connected approach to creator partnerships</div><div class="trust-item"><span>01</span> Strategy</div><div class="trust-item"><span>02</span> Creator sourcing</div><div class="trust-item"><span>03</span> Campaign management</div><div class="trust-item"><span>04</span> Reporting</div></div></div>
+<section class="section" id="services"><div class="wrap">
+  <div class="section-head"><div><span class="eyebrow dark">What we do</span><h2>Influencer marketing, managed from end to end.</h2></div><p>Whether you're entering a new market or strengthening your presence, we build the right creator partnerships and manage the campaign journey with care.</p></div>
+  <div class="services-grid">
+    <article class="service-card"><div class="service-icon">⌕</div><h3>Campaign strategy</h3><p>We turn your objectives into a clear influencer campaign plan, with audience, platform, market and creator considerations built in.</p><div class="service-number">01 / PLAN WITH PURPOSE</div></article>
+    <article class="service-card"><div class="service-icon">◎</div><h3>Influencer discovery</h3><p>We identify and shortlist creators whose content, audience and values align with your brand and campaign brief.</p><div class="service-number">02 / FIND THE RIGHT VOICES</div></article>
+    <article class="service-card"><div class="service-icon">↔</div><h3>Creator negotiations</h3><p>We coordinate outreach, discuss campaign rates and deliverables, and align expectations with creators before a campaign is confirmed.</p><div class="service-number">03 / BUILD THE PARTNERSHIP</div></article>
+    <article class="service-card"><div class="service-icon">✳</div><h3>Campaign management</h3><p>From timelines and briefs to approvals and publishing coordination, we keep campaign activity organised and moving.</p><div class="service-number">04 / KEEP IT MOVING</div></article>
+    <article class="service-card"><div class="service-icon">▤</div><h3>Content & deliverables</h3><p>We help coordinate content requirements, review workflows and agreed deliverables so everyone is working from the same brief.</p><div class="service-number">05 / ALIGN THE DETAILS</div></article>
+    <article class="service-card"><div class="service-icon">↗</div><h3>Reporting & insights</h3><p>We bring campaign results and key learnings together to help your team understand performance and plan what comes next.</p><div class="service-number">06 / LEARN AND IMPROVE</div></article>
+  </div>
+</div></section>
+<section class="section process" id="approach"><div class="wrap process-grid">
+  <div class="process-intro"><span class="eyebrow dark">Our approach</span><h2>Clear process.<br>Better partnerships.</h2><p>Great campaigns are built on clear communication, realistic expectations and the right people around the table. We make the moving parts feel connected.</p><a class="btn btn-dark" href="#contact" style="margin-top:17px">Start a conversation ↗</a></div>
+  <div class="process-list">
+    <div class="process-step"><div class="step-no">01</div><div><h3>Understand the brief</h3><p>We get to know your brand, audience, objectives, target markets, budget and campaign timing.</p></div></div>
+    <div class="process-step"><div class="step-no">02</div><div><h3>Build the creator shortlist</h3><p>We research suitable creators and share a considered shortlist for review and selection.</p></div></div>
+    <div class="process-step"><div class="step-no">03</div><div><h3>Agree rates and deliverables</h3><p>We coordinate negotiations and confirm the scope, content requirements, usage terms and timelines before proceeding.</p></div></div>
+    <div class="process-step"><div class="step-no">04</div><div><h3>Manage the campaign</h3><p>We coordinate communication, content checkpoints, publishing schedules and delivery across the campaign.</p></div></div>
+    <div class="process-step"><div class="step-no">05</div><div><h3>Review the results</h3><p>We compile agreed performance information and useful learnings to inform your next campaign.</p></div></div>
+  </div>
+</div></section>
+<section class="section model" id="model"><div class="wrap model-grid">
+  <div><span class="eyebrow">A straightforward agency model</span><h2>One agency partner. A coordinated campaign.</h2><p class="model-copy">InterCollabs works with the client as the campaign service provider. We agree the project scope and fee with the business, coordinate creator agreements and manage the campaign through to delivery.</p><div class="model-points"><div class="model-point"><span class="check">✓</span><span>A clear scope, timeline and campaign fee agreed with your business.</span></div><div class="model-point"><span class="check">✓</span><span>Creator rates and deliverables negotiated and confirmed before activation.</span></div><div class="model-point"><span class="check">✓</span><span>Centralised campaign coordination and payment administration.</span></div></div></div>
+  <div class="model-panel"><div class="panel-label">How the engagement is structured</div><div class="flow-row"><div><small>01 / CLIENT</small><b>Business engages InterCollabs</b></div><span class="flow-arrow">→</span></div><div class="flow-row"><div><small>02 / AGENCY</small><b>Campaign scope & client invoice</b></div><span class="flow-arrow">→</span></div><div class="flow-row"><div><small>03 / CREATOR PARTNERS</small><b>Agreed creator services delivered</b></div><span class="flow-arrow">→</span></div><div class="flow-row"><div><small>04 / SETTLEMENT</small><b>Creator payments processed</b></div><span class="flow-arrow">✓</span></div><p class="flow-note">The client pays InterCollabs under the agreed client contract. InterCollabs separately settles creator fees in line with the relevant creator agreements and payment terms.</p></div>
+</div></section>
+<section class="section" id="about"><div class="wrap"><div class="section-head"><div><span class="eyebrow dark">Who we work with</span><h2>Good collaborations start with the right fit.</h2></div><p>We work across both sides of the creator economy, bringing businesses and creators together through clear briefs and well-managed partnerships.</p></div>
+  <div class="audience-grid"><article class="audience-card brand-card"><span class="eyebrow">For businesses</span><h3>Make your brand part of the conversation.</h3><p>For brands, agencies and growing businesses looking to reach relevant audiences through thoughtful creator partnerships.</p><a href="#contact">Discuss a campaign <span>↗</span></a></article><article class="audience-card creator-card"><span class="eyebrow">For creators</span><h3>Work with brands that value your voice.</h3><p>For creators interested in relevant paid collaborations, clear campaign expectations and professional communication.</p><a href="#contact">Connect with our team <span>↗</span></a></article></div>
+</div></section>
+<section class="cta"><div class="wrap cta-inner"><div><span class="eyebrow">Let's make something meaningful</span><h2>Your next campaign starts with a conversation.</h2></div><div><p>Tell us what you're looking to achieve. We'll take it from there and explore what a successful collaboration could look like.</p><a class="btn" href="#contact">Talk to InterCollabs <span>↗</span></a></div></div></section>
+<section class="section contact" id="contact"><div class="wrap contact-grid">
+  <div class="contact-intro"><span class="eyebrow dark">Get in touch</span><h2>Let's talk about what's possible.</h2><p>Share a little about your brand, campaign or creator goals. Our team will be in touch to discuss the next steps.</p><div class="contact-detail"><b>General enquiries</b><span>hello@intercollabs.com</span></div><div class="contact-detail"><b>Working worldwide</b><span>International campaigns · Creator partnerships · Brand collaborations</span></div></div>
+  <form class="contact-form" id="contactForm">
+    <div class="form-row"><div class="field"><label for="name">Your name *</label><input id="name" name="name" required placeholder="Name"></div><div class="field"><label for="email">Work email *</label><input id="email" name="email" type="email" required placeholder="you@company.com"></div></div>
+    <div class="form-row"><div class="field"><label for="company">Company / brand</label><input id="company" name="company" placeholder="Your company"></div><div class="field"><label for="interest">I'm interested in</label><select id="interest" name="interest"><option>Brand campaign</option><option>Creator partnership</option><option>Agency partnership</option><option>Other enquiry</option></select></div></div>
+    <div class="field"><label for="message">Tell us about your project *</label><textarea id="message" name="message" required placeholder="Your goals, target market, timing or anything else we should know..."></textarea></div>
+    <div class="form-foot"><button class="btn btn-dark" type="submit">Send enquiry <span>↗</span></button><span class="form-status" id="formStatus" aria-live="polite"></span></div>
+  </form>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark">i</span><span>intercollabs<span style="color:#b8ef65">.</span></span></a><p>Connecting brands and creators through considered influencer marketing and international collaboration.</p></div><div class="footer-links"><div class="footer-col"><b>Explore</b><a href="#services">Services</a><a href="#approach">Our approach</a><a href="#model">How it works</a></div><div class="footer-col"><b>Connect</b><a href="#contact">Contact</a><a href="mailto:hello@intercollabs.com">Email us</a></div></div></div><div class="footer-bottom"><span>© <span id="year"></span> InterCollabs. All rights reserved.</span><span>Influence, without borders.</span></div></div></footer>
+</div>
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.textContent = open ? '×' : '☰';
+});
+navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.textContent = '☰';
+}));
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('contactForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const form = new FormData(event.currentTarget);
+  const subject = encodeURIComponent('Website enquiry — ' + (form.get('interest') || 'InterCollabs'));
+  const body = encodeURIComponent(
+    'Name: ' + form.get('name') + '\nEmail: ' + form.get('email') +
+    '\nCompany: ' + (form.get('company') || 'Not provided') +
+    '\nInterested in: ' + form.get('interest') + '\n\nProject details:\n' + form.get('message')
+  );
+  document.getElementById('formStatus').textContent = 'Opening your email app to send this enquiry…';
+  window.location.href = 'mailto:hello@intercollabs.com?subject=' + subject + '&body=' + body;
+});
+</script>
+</body>
+</html>
